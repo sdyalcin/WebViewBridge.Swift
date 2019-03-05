@@ -4,28 +4,28 @@
 //
 //  Created by travel on 16/6/19.
 //
-//	OS X 10.10+ and iOS 8.0+
-//	Only use with ARC
+//    OS X 10.10+ and iOS 8.0+
+//    Only use with ARC
 //
-//	The MIT License (MIT)
-//	Copyright © 2016 travel.
+//    The MIT License (MIT)
+//    Copyright © 2016 travel.
 //
-//	Permission is hereby granted, free of charge, to any person obtaining a copy of
-//	this software and associated documentation files (the "Software"), to deal in
-//	the Software without restriction, including without limitation the rights to
-//	use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-//	the Software, and to permit persons to whom the Software is furnished to do so,
-//	subject to the following conditions:
+//    Permission is hereby granted, free of charge, to any person obtaining a copy of
+//    this software and associated documentation files (the "Software"), to deal in
+//    the Software without restriction, including without limitation the rights to
+//    use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+//    the Software, and to permit persons to whom the Software is furnished to do so,
+//    subject to the following conditions:
 //
-//	The above copyright notice and this permission notice shall be included in all
-//	copies or substantial portions of the Software.
+//    The above copyright notice and this permission notice shall be included in all
+//    copies or substantial portions of the Software.
 //
-//	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-//	FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-//	COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-//	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-//	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+//    FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+//    COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+//    IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+//    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import UIKit
 import WebKit
@@ -338,7 +338,7 @@ class ZHWebViewDelegateProxy: NSObject, UIWebViewDelegate {
         original?.webViewDidFinishLoad?(webView)
     }
 
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+    private func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         if let handled = controller?.requestHandler?.handleRequest(request) {
             return !handled
         }
@@ -459,7 +459,7 @@ class ZHBridgeActionHandlerImpl {
 
     /**
      register a handler to handle js call
-     
+
      - parameter handlerName: handler name, unique to identify native handler
      - parameter callback:    native call back to handler js call. Input args array, return tuple. tuple.0 indicate handle status, tuple.1 args array to pass to js callback
      */
@@ -485,9 +485,9 @@ extension ZHBridgeActionHandlerImpl: ZHRequestHandler {
     /**
      handle a request. this method should be used in webView:shouldStartLoadWithRequest:navigationType: of UIWebViewDelegate
      Note: this method has be deprecated
-     
+
      - parameter request: request
-     
+
      - returns: true request has handled by bridge
      */
     open func handleRequest(_ request: URLRequest) -> Bool {
@@ -525,7 +525,7 @@ open class ZHWebViewBridge<WebView: AnyObject> {
 
     /**
      tear down your bridge, if you call this method, your bridge will not work any more.
-     
+
      Note:
      for UIWebView: recover webview delegate
      for WKWebView: will remove script handler added by self
@@ -549,7 +549,7 @@ open class ZHWebViewBridge<WebView: AnyObject> {
 
     /**
      register a handler to handle js call
-     
+
      - parameter handlerName: handler name, unique to identify native handler
      - parameter callback:    native call back to handler js call. Input args array, return tuple. tuple.0 indicate handle status, tuple.1 args array to pass to js callback
      */
@@ -570,7 +570,7 @@ extension WKWebView: ZHWebViewBridgeProtocol {
 extension ZHWebViewBridge where WebView: WKWebView {
     /**
      call js handler register in js
-     
+
      - parameter handlerName: handler name, unique to identify js handler
      - parameter args:        args that will be pass to registered js handler
      - parameter callback:    callback method after js handler
@@ -622,7 +622,7 @@ extension ZHWebViewBridge where WebView: UIWebView {
 
     /**
      call js handler register in js
-     
+
      - parameter handlerName: handler name, unique to identify js handler
      - parameter args:        args that will be pass to registered js handler
      - parameter callback:    callback method after js handler
@@ -648,10 +648,10 @@ extension ZHWebViewBridge where WebView: UIWebView {
      2, bridge will replace webView.delegate, if you want to access the origin delegate, use bridge.delegate instead
      3, multi bridge for on webview is not allowed, or else bridge behavior is unexpected
      4, bridge release or manual call teardown will recover webview delegate
-     
+
      - parameter webView:        webview you want to setup
      - parameter proxyDelegate: if set to false, your should manual call bridge.handleRequest(:) in method webView:shouldStartLoadWithRequest:navigationType: of UIWebViewDelegate
-     
+
      - returns: bridge
      */
     open class func bridge(_ webView: WebView, proxyDelegate: Bool = true) -> ZHWebViewBridge<WebView> {
@@ -670,9 +670,9 @@ extension ZHWebViewBridge where WebView: UIWebView {
 
     /**
      handle a request. this method should be used in webView:shouldStartLoadWithRequest:navigationType: of UIWebViewDelegate
-     
+
      - parameter request: request
-     
+
      - returns: true request has handled by bridge
      */
     open func handleRequest(_ request: URLRequest) -> Bool {
