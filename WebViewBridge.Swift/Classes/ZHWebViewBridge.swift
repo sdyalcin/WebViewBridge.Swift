@@ -338,7 +338,7 @@ class ZHWebViewDelegateProxy: NSObject, UIWebViewDelegate {
         original?.webViewDidFinishLoad?(webView)
     }
 
-    private func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+    internal func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         if let handled = controller?.requestHandler?.handleRequest(request) {
             return !handled
         }
