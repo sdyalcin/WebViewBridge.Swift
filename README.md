@@ -20,7 +20,7 @@ Honestly speaking, WebViewBridge.Swift provides you another choice, but far from
 - WebViewBridge.Swift:
     - Use JavaScriptCore, deprecate iframe(not all, may use iframe before webViewDidFinishLoad).
     - Full Swift, and easy to use.
-    - Support both UIWebView and WKWebView
+    - Support  WKWebView
 
 If you just want to integrate bridge feature to you app, WebViewBridge.Swift supplies you another choice. It's brief, simple, optimized for ios, but works well.
 
@@ -40,10 +40,9 @@ If your have any question, you can email me(zhangbozhb@gmail.com) or leave messa
 
 #### Set up bridge between your webView and html
 
-**1** Set up bridge for your UIWebView/WKWebView
+**1** Set up bridge for your WKWebView
 ```swift
 let bridge = ZHWebViewBridge<WKWebView>.bridge(WKWebView())
-let bridge = ZHWebViewBridge<UIWebView>.bridge(UIWebView())
 ```
 * Note: if you set bridge for UIWebView
     * copy bridge.js to your html file
@@ -63,7 +62,7 @@ ZHBridge.Core.registerJsHandler(
             return "js get version: " + version;
           });
 ```
-version before 2.2, please use ZHWebViewBridge.bridge(UIWebView())
+
 
 * Note: ZHBridge.Core.registerJsHandler(handlerName, callback)
 
@@ -110,7 +109,7 @@ ZHBridge.Core.callNativeHandler(
 #### 3, Others
 **a**, add user plugin script
 ```swift
-bridge.addUserPluginScript("your script")   // when run your plugin: WKWebView at document start， UIWebview will try to run script webViewDidStartLoad(:) webViewDidFinishLoad(:)
+bridge.addUserPluginScript("your script")   // when run your plugin: WKWebView at document start，
 ```
 
 
@@ -140,7 +139,7 @@ WebView与Native桥并不是一个新的话题, 在很早以前就有实现了, 
 - Cordova-ios: 本身是一个很了不起的项目, 提供了多个平台, 对于 Hybrid App而言, 是一个很好的选择;
 如果你编写的不是Hybrid App, 只是想简单的集成 bridge这个功能, Cordova 就显得过于复杂了, 不方面集成, 另外暂时也无 swift 版本的
 - WebViewJavascriptBridge: 也很不错, 同时提供了 iOS, android 版本, 集成也简单方便. 有以下几点不足:
-    - UIWebView/WKWebView: 采用的旧式的 iframe 方式来实现, 集成相对麻烦
+    - WKWebView: 采用的旧式的 iframe 方式来实现, 集成相对麻烦
     - 没有提供 Swift 版本
 
 WebViewBridge.Swift 给你提供了另一种可能, 与其他相比由以下优点:
@@ -152,7 +151,7 @@ WebViewBridge.Swift 给你提供了另一种可能, 与其他相比由以下优�
 
 #### 前提: 为WebView和html建立桥
 
-**1** 给 UIWebView/WKWebView 建立桥
+**1** 给 WKWebView 建立桥
 ```swift
 let bridge = ZHWebViewBridge<WKWebView>.bridge(WKWebView())
 let bridge = ZHWebViewBridge<UIWebView>.bridge(UIWebView())
