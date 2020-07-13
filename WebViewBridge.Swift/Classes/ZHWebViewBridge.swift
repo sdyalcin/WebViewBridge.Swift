@@ -316,6 +316,12 @@ class ZHBridgeActionHandlerImpl {
     func registerHandler(_ handlerName: String, callback:@escaping ZHBridgeActionCallback) {
         handlerMapper[handlerName] = callback
     }
+    func removeHandler(handlerName : String) {
+
+        if handlerMapper.count>0, handlerMapper[handlerName] != nil {
+            handlerMapper[handlerName] = nil
+        }
+    }
 }
 
 extension ZHBridgeActionHandlerImpl: ZHBridgeActionHandlerProtocol {
@@ -369,6 +375,9 @@ open class ZHWebViewBridge<WebView: AnyObject> {
      */
     open func registerHandler(_ handlerName: String, callback:@escaping ZHBridgeActionCallback) {
         actionHander.registerHandler(handlerName, callback: callback)
+    }
+    open func removeHandler(_ handlerName: String) {
+        actionHander.removeHandler(handlerName: handlerName)
     }
 }
 
