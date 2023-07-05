@@ -4,7 +4,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "WebViewBridge.Swift"
-  s.version      = "2.4"
+  s.version      = "2.5"
   s.summary      = "A bridge for WebView( WKWebView), using JavaScriptCore, handles messages between native(Swift) and js"
 
   s.description  = <<-DESC
@@ -19,12 +19,12 @@ Pod::Spec.new do |s|
   s.author             = { "travel" => "zhangbozhb@gmail.com" }
   s.social_media_url   = "http://twitter.com/travel_zh"
 
-  s.ios.deployment_target = "8.0"
+  s.ios.deployment_target = "13.0"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
   s.source       = { :git => "https://github.com/zhangbozhb/WebViewBridge.Swift.git", :tag => s.version }
 
-
-  s.source_files  = ["WebViewBridge.Swift/Classes/*.swift", "WebViewBridge.Swift/Classes/*.js"]
+  s.resources = ["WebViewBridge.Swift/Classes/*.js"]
+  s.source_files  = ["WebViewBridge.Swift/Classes/*.swift"]
 end
